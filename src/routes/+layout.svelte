@@ -7,8 +7,19 @@
 	import { setLocale } from '$lib/i18n';
 	import { setThemeMode } from '$lib/theme';
 	import DebugPanel from '$lib/components/DebugPanel.svelte';
+	import Header from '$lib/components/Header.svelte';
+	import Drawer from '$lib/components/Drawer.svelte';
 
 	let { children } = $props();
+	let isDrawerOpen = $state(false);
+
+	function toggleDrawer() {
+		isDrawerOpen = !isDrawerOpen;
+	}
+
+	function closeDrawer() {
+		isDrawerOpen = false;
+	}
 
 	onMount(async () => {
 		try {
@@ -17,16 +28,30 @@
 			await setLocale(settings.locale);
 			setThemeMode(settings.themeMode);
 			
-			initTheme();
+			await initTheme();
 		} catch (error) {
 			console.error('Failed to initialize app:', error);
 			await initI18n();
-			initTheme();
+			await initTheme();
 		}
 	});
 </script>
 
+<!-- ヘッダー -->
+<Header ondrawer-toggle={toggleDrawer} />
+
+<!-- ドロワー -->
+<Drawer {isDrawerOpen} onclose={closeDrawer} />
+
+<!-- メインコンテンツ -->
 <div class="safe-area-top min-h-screen">
-	{@render children()}
+	<!-- ヘッダーの高さ分のスペース -->
+	<div class="h-16"></div>
+	
+	<!-- ページコンテンツ -->
+	<main class="relative">
+		{@render children()}
+	</main>
 </div>
+
 <DebugPanel />
