@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "Soramoyou",
+    "title": "Himmelsstimmung"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "loading": "Laden...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolgreich"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "theme": "Design",
+    "appearance": "Erscheinungsbild"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System folgen"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "settings": "Einstellungen",
+    "about": "Über"
+  }
+}

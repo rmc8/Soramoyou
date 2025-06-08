@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "Soramoyou",
+    "title": "Humor do Céu"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "close": "Fechar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "success": "Sucesso"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "theme": "Tema",
+    "appearance": "Aparência"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Seguir sistema"
+  },
+  "navigation": {
+    "home": "Início",
+    "settings": "Configurações",
+    "about": "Sobre"
+  }
+}
