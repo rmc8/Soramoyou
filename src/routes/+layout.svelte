@@ -26,5 +26,7 @@
 	});
 </script>
 
-{@render children()}
+<div class="safe-area-top min-h-screen">
+	{@render children()}
+</div>
 <DebugPanel />

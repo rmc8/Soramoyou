@@ -1,5 +1,7 @@
 import { writable, derived } from 'svelte/store';
 import { browser } from '$app/environment';
+import { invoke } from '@tauri-apps/api/core';
+import { listen } from '@tauri-apps/api/event';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
 export type ResolvedTheme = 'light' | 'dark';
@@ -40,7 +42,7 @@ export const setThemeMode = (mode: ThemeMode) => {
   }
 };
 
-export const applyTheme = () => {
+export const applyTheme = async () => {
   if (!browser) return;
   
   const resolved = getResolvedTheme();
@@ -50,6 +52,17 @@ export const applyTheme = () => {
   root.classList.add(resolved);
   
   root.setAttribute('data-theme', resolved);
+  
+  // Set system bar text color based on theme
+  try {
+    await invoke('set_theme', { 
+      theme: resolved,
+      titleBarColor: resolved === 'dark' ? '#000000' : '#ffffff',
+      textColor: resolved === 'dark' ? '#ffffff' : '#000000'
+    });
+  } catch (error) {
+    console.warn('Failed to update system bar theme:', error);
+  }
 };
 
 const getResolvedTheme = (): ResolvedTheme => {
@@ -66,7 +79,7 @@ const getThemeMode = (): ThemeMode => {
   return saved && ['light', 'dark', 'system'].includes(saved) ? saved : 'system';
 };
 
-export const initTheme = () => {
+export const initTheme = async () => {
   if (!browser) return;
   
   updateSystemPreference();
@@ -77,16 +90,25 @@ export const initTheme = () => {
   const savedMode = getThemeMode();
   themeMode.set(savedMode);
   
-  applyTheme();
+  await applyTheme();
+  
+  // Setup Android status bar listener
+  try {
+    await listen('status_bar_theme', (event) => {
+      console.log('Status bar theme updated:', event.payload);
+    });
+  } catch (error) {
+    console.warn('Failed to setup status bar listener:', error);
+  }
   
   return () => {
     mediaQuery.removeEventListener('change', updateSystemPreference);
   };
 };
 
-resolvedTheme.subscribe((theme) => {
+resolvedTheme.subscribe(async () => {
   if (browser) {
-    applyTheme();
+    await applyTheme();
   }
 });
 
