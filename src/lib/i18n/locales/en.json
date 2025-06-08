@@ -33,6 +33,45 @@
     "settings": "Settings",
     "about": "About"
   },
+  "user": {
+    "defaultName": "User"
+  },
+  "nav": {
+    "home": "Home",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "drawer": {
+    "menu": "Menu"
+  },
+  "auth": {
+    "notLoggedIn": "Not logged in",
+    "pleaseLogin": "Please log in",
+    "logout": "Logout",
+    "sessionExpired": "Session has expired. Please log in again.",
+    "error": {
+      "loginFailed": "Login failed",
+      "invalidCredentials": "Handle or app password is incorrect",
+      "badRequest": "There is a problem with the request. Please check your input",
+      "tooManyRequests": "Too many requests. Please wait and try again",
+      "networkError": "Network error occurred. Please check your connection",
+      "generic": "Error: {message}",
+      "sessionRestoreFailed": "Failed to restore session",
+      "sessionRefreshFailed": "Failed to refresh session. Please log in again."
+    }
+  },
+  "debug": {
+    "title": "Debug Panel",
+    "refresh": "Refresh",
+    "clear": "Clear",
+    "latestError": "Latest Error:",
+    "logHistory": "Log History:",
+    "noLogs": "No logs available"
+  },
+  "timeline": {
+    "comingSoon": "Timeline feature is coming soon.",
+    "sessionInfo": "Session Info"
+  },
   "login": {
     "title": "Sign in to Bluesky",
     "subtitle": "Enter your account information",

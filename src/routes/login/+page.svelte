@@ -23,7 +23,7 @@
   // Check for session expired error in URL params
   $effect(() => {
     if (mounted && $page.url.searchParams.get('error') === 'session_expired') {
-      sessionError.set('セッションの有効期限が切れました。再度ログインしてください。');
+      sessionError.set($t('auth.sessionExpired'));
     }
   });
 </script>

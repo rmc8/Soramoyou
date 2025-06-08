@@ -42,18 +42,18 @@
         </div>
       </div>
       <Button variant="outline" on:click={handleLogout}>
-        ログアウト
+        {$t('auth.logout')}
       </Button>
     </header>
 
     <main class="timeline-main">
       <div class="timeline-content">
         <h2>Timeline</h2>
-        <p>タイムライン機能は実装予定です。</p>
+        <p>{$t('timeline.comingSoon')}</p>
         
         {#if $currentSession}
           <div class="session-info">
-            <h3>セッション情報</h3>
+            <h3>{$t('timeline.sessionInfo')}</h3>
             <p><strong>Handle:</strong> {$currentSession.handle}</p>
             <p><strong>DID:</strong> {$currentSession.did}</p>
             <p><strong>Status:</strong> {$currentSession.active ? 'Active' : 'Inactive'}</p>

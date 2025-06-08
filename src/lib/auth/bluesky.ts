@@ -1,5 +1,6 @@
 import { AtpAgent, type AtpSessionEvent, type AtpSessionData } from '@atproto/api';
 import { writable, get } from 'svelte/store';
+import { t } from '$lib/i18n';
 import { getDatabase, type BlueskyAccount } from '$lib/database';
 import { logger } from '$lib/utils/logger.js';
 
@@ -194,17 +195,17 @@ export const loginWithCredentials = async (credentials: LoginCredentials): Promi
     });
     
     // より詳細なエラーメッセージを設定
-    let errorMessage = 'ログインに失敗しました';
+    let errorMessage = get(t)('auth.error.loginFailed');
     if (error.status === 401) {
-      errorMessage = 'ハンドルまたはアプリパスワードが正しくありません';
+      errorMessage = get(t)('auth.error.invalidCredentials');
     } else if (error.status === 400) {
-      errorMessage = 'リクエストに問題があります。入力内容を確認してください';
+      errorMessage = get(t)('auth.error.badRequest');
     } else if (error.status === 429) {
-      errorMessage = 'リクエストが多すぎます。しばらく待ってから再試行してください';
+      errorMessage = get(t)('auth.error.tooManyRequests');
     } else if (error.message?.includes('network') || error.message?.includes('fetch')) {
-      errorMessage = 'ネットワークエラーが発生しました。接続を確認してください';
+      errorMessage = get(t)('auth.error.networkError');
     } else if (error.message) {
-      errorMessage = `エラー: ${error.message}`;
+      errorMessage = get(t)('auth.error.generic', { message: error.message });
     }
     
     sessionError.set(errorMessage);
@@ -274,7 +275,7 @@ export const resumeSessionFromDatabase = async (): Promise<boolean> => {
     return true;
   } catch (error) {
     logger.error('Failed to resume session', error);
-    sessionError.set('セッションの復元に失敗しました');
+    sessionError.set(get(t)('auth.error.sessionRestoreFailed'));
     return false;
   }
 };
@@ -306,7 +307,7 @@ export const refreshSession = async (account?: BlueskyAccount): Promise<boolean>
     return false;
   } catch (error) {
     logger.error('Session refresh failed', error);
-    sessionError.set('セッションの更新に失敗しました。再ログインしてください。');
+    sessionError.set(get(t)('auth.error.sessionRefreshFailed'));
     await logout();
     return false;
   }

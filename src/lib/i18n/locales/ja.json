@@ -33,6 +33,45 @@
     "settings": "設定",
     "about": "について"
   },
+  "user": {
+    "defaultName": "ユーザー"
+  },
+  "nav": {
+    "home": "ホーム",
+    "profile": "プロフィール",
+    "settings": "設定"
+  },
+  "drawer": {
+    "menu": "メニュー"
+  },
+  "auth": {
+    "notLoggedIn": "未ログイン",
+    "pleaseLogin": "ログインしてください",
+    "logout": "ログアウト",
+    "sessionExpired": "セッションの有効期限が切れました。再度ログインしてください。",
+    "error": {
+      "loginFailed": "ログインに失敗しました",
+      "invalidCredentials": "ハンドルまたはアプリパスワードが正しくありません",
+      "badRequest": "リクエストに問題があります。入力内容を確認してください",
+      "tooManyRequests": "リクエストが多すぎます。しばらく待ってから再試行してください",
+      "networkError": "ネットワークエラーが発生しました。接続を確認してください",
+      "generic": "エラー: {message}",
+      "sessionRestoreFailed": "セッションの復元に失敗しました",
+      "sessionRefreshFailed": "セッションの更新に失敗しました。再ログインしてください。"
+    }
+  },
+  "debug": {
+    "title": "デバッグパネル",
+    "refresh": "更新",
+    "clear": "クリア",
+    "latestError": "最新エラー:",
+    "logHistory": "ログ履歴:",
+    "noLogs": "ログがありません"
+  },
+  "timeline": {
+    "comingSoon": "タイムライン機能は実装予定です。",
+    "sessionInfo": "セッション情報"
+  },
   "login": {
     "title": "Blueskyにログイン",
     "subtitle": "アカウント情報を入力してください",

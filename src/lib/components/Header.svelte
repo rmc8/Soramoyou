@@ -2,6 +2,7 @@
 	import { Menu, MessageSquare, User } from 'lucide-svelte';
 	import { currentUser } from '$lib/auth/bluesky';
 	import { isAuthenticated } from '$lib/stores/auth';
+	import { t } from '$lib/i18n';
 
 	interface Props {
 		onDrawerToggle?: () => void;
@@ -23,7 +24,7 @@
 	}
 
 	function getUserName(user: any): string {
-		return user?.displayName || user?.handle || 'ユーザー';
+		return user?.displayName || user?.handle || $t('user.defaultName');
 	}
 </script>
 

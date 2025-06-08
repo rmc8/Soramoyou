@@ -50,7 +50,7 @@
 	}
 
 	function getUserName(user: any): string {
-		return user?.displayName || 'ユーザー';
+		return user?.displayName || $t('user.defaultName');
 	}
 
 	function getUserHandle(user: any): string {
@@ -58,15 +58,15 @@
 	}
 
 	const menuItems = [
-		{ icon: Home, label: 'ホーム', href: '/' },
-		{ icon: User, label: 'プロフィール', href: '/profile' },
-		{ icon: Settings, label: '設定', href: '/settings' }
+		{ icon: Home, label: $t('nav.home'), href: '/' },
+		{ icon: User, label: $t('nav.profile'), href: '/profile' },
+		{ icon: Settings, label: $t('nav.settings'), href: '/settings' }
 	];
 
 	const themeOptions = [
-		{ value: 'light', icon: Sun, label: 'ライト' },
-		{ value: 'dark', icon: Moon, label: 'ダーク' },
-		{ value: 'system', icon: Monitor, label: 'システム' }
+		{ value: 'light', icon: Sun, label: $t('theme.light') },
+		{ value: 'dark', icon: Moon, label: $t('theme.dark') },
+		{ value: 'system', icon: Monitor, label: $t('theme.system') }
 	];
 </script>
 
@@ -147,7 +147,7 @@
 		>
 			<!-- ヘッダー -->
 			<div class="flex items-center justify-between p-6 pb-4 animate-slide-in">
-				<h2 class="{isDark ? 'text-white' : 'text-gray-900'} text-xl font-bold">メニュー</h2>
+				<h2 class="{isDark ? 'text-white' : 'text-gray-900'} text-xl font-bold">{$t('drawer.menu')}</h2>
 				<button
 					type="button"
 					class="p-2 rounded-full transition-colors {isDark ? 'hover:bg-gray-800 text-gray-400 hover:text-white' : 'hover:bg-gray-100 text-gray-600 hover:text-gray-800'}"
@@ -178,8 +178,8 @@
 							<User class="w-6 h-6 {isDark ? 'text-gray-400' : 'text-gray-500'}" />
 						</div>
 						<div>
-							<h3 class="font-semibold {isDark ? 'text-white' : 'text-gray-900'}">未ログイン</h3>
-							<p class="text-sm {isDark ? 'text-gray-300' : 'text-gray-600'}">ログインしてください</p>
+							<h3 class="font-semibold {isDark ? 'text-white' : 'text-gray-900'}">{$t('auth.notLoggedIn')}</h3>
+							<p class="text-sm {isDark ? 'text-gray-300' : 'text-gray-600'}">{$t('auth.pleaseLogin')}</p>
 						</div>
 					</div>
 				{/if}
@@ -203,7 +203,7 @@
 
 			<!-- テーマ切り替え -->
 			<div class="px-6 py-4 mt-auto animate-slide-in-delay-3">
-				<h4 class="text-sm font-semibold mb-4 {isDark ? 'text-white' : 'text-gray-900'}">テーマ</h4>
+				<h4 class="text-sm font-semibold mb-4 {isDark ? 'text-white' : 'text-gray-900'}">{$t('settings.theme')}</h4>
 				<div class="rounded-xl p-3 space-y-1 {isDark ? 'bg-gray-800' : 'bg-gray-50'}">
 					{#each themeOptions as option}
 						{@const isSelected = $themeMode === option.value}
@@ -229,7 +229,7 @@
 					class="flex items-center space-x-3 w-full px-4 py-3 rounded-xl transition-colors font-medium {isDark ? 'hover:bg-red-900/20 text-red-400 hover:text-red-300' : 'hover:bg-red-50 text-red-600 hover:text-red-700'}"
 				>
 					<LogOut class="w-5 h-5" />
-					<span>ログアウト</span>
+					<span>{$t('auth.logout')}</span>
 				</button>
 			</div>
 		</div>

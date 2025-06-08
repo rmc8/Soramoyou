@@ -33,6 +33,45 @@
     "settings": "Configurações",
     "about": "Sobre"
   },
+  "user": {
+    "defaultName": "Usuário"
+  },
+  "nav": {
+    "home": "Início",
+    "profile": "Perfil",
+    "settings": "Configurações"
+  },
+  "drawer": {
+    "menu": "Menu"
+  },
+  "auth": {
+    "notLoggedIn": "Não conectado",
+    "pleaseLogin": "Por favor, faça login",
+    "logout": "Sair",
+    "sessionExpired": "Sessão expirou. Por favor, faça login novamente.",
+    "error": {
+      "loginFailed": "Falha no login",
+      "invalidCredentials": "Identificador ou senha do app está incorreto",
+      "badRequest": "Há um problema com a solicitação. Verifique sua entrada",
+      "tooManyRequests": "Muitas solicitações. Aguarde e tente novamente",
+      "networkError": "Erro de rede ocorreu. Verifique sua conexão",
+      "generic": "Erro: {message}",
+      "sessionRestoreFailed": "Falha ao restaurar sessão",
+      "sessionRefreshFailed": "Falha ao atualizar sessão. Por favor, faça login novamente."
+    }
+  },
+  "debug": {
+    "title": "Painel de Debug",
+    "refresh": "Atualizar",
+    "clear": "Limpar",
+    "latestError": "Último Erro:",
+    "logHistory": "Histórico de Logs:",
+    "noLogs": "Nenhum log disponível"
+  },
+  "timeline": {
+    "comingSoon": "Funcionalidade de timeline em breve.",
+    "sessionInfo": "Informações da Sessão"
+  },
   "login": {
     "title": "Entrar no Bluesky",
     "subtitle": "Digite suas informações da conta",
