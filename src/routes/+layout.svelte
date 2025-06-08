@@ -23,16 +23,24 @@
 
 	onMount(async () => {
 		try {
-			const settings = await loadSettings();
+			// 並列で初期化処理を実行して起動時間を短縮
+			const [settings] = await Promise.all([
+				loadSettings(),
+				initI18n() // i18nを先行して初期化
+			]);
 			
-			await setLocale(settings.locale);
-			setThemeMode(settings.themeMode);
-			
-			await initTheme();
+			// 設定値を適用
+			await Promise.all([
+				setLocale(settings.locale),
+				initTheme().then(() => setThemeMode(settings.themeMode))
+			]);
 		} catch (error) {
 			console.error('Failed to initialize app:', error);
-			await initI18n();
-			await initTheme();
+			// フォールバック処理も並列化
+			await Promise.all([
+				initI18n(),
+				initTheme()
+			]);
 		}
 	});
 </script>

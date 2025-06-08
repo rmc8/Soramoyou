@@ -7,7 +7,6 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import android.webkit.WebView
 import android.webkit.JavascriptInterface
-
 class MainActivity : TauriActivity() {
     private var webView: WebView? = null
     
@@ -43,6 +42,9 @@ class MainActivity : TauriActivity() {
                 super.onPageFinished(view, url)
                 // ページロード完了後にテーマリスナーを設定
                 setupThemeListener()
+                
+                // ルートページへの戻りを防ぐ
+                preventBackToRoot(view)
             }
         }
     }
@@ -83,6 +85,42 @@ class MainActivity : TauriActivity() {
                         console.error('Failed to register theme listener:', e);
                     });
                 }
+            })();
+        """.trimIndent(), null)
+    }
+    
+    private fun preventBackToRoot(view: WebView?) {
+        view?.evaluateJavascript("""
+            (function() {
+                // ルートページ（/）への直接アクセスを防ぐ
+                if (window.location.pathname === '/') {
+                    // 認証状態に応じてリダイレクト
+                    const checkAuth = () => {
+                        if (window.localStorage.getItem('auth_token')) {
+                            if (window.location.pathname === '/') {
+                                window.history.replaceState(null, '', '/timeline');
+                            }
+                        } else {
+                            if (window.location.pathname === '/') {
+                                window.history.replaceState(null, '', '/login');
+                            }
+                        }
+                    };
+                    checkAuth();
+                }
+                
+                // ブラウザの戻るボタンでルートに戻ることを防ぐ
+                window.addEventListener('popstate', function(event) {
+                    if (window.location.pathname === '/') {
+                        event.preventDefault();
+                        const isAuth = window.localStorage.getItem('auth_token');
+                        if (isAuth) {
+                            window.history.pushState(null, '', '/timeline');
+                        } else {
+                            window.history.pushState(null, '', '/login');
+                        }
+                    }
+                });
             })();
         """.trimIndent(), null)
     }

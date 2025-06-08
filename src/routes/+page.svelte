@@ -17,13 +17,13 @@
     await initAuth();
   });
 
-  // Redirect based on authentication status
+  // Redirect based on authentication status - prevent going back to root
   $effect(() => {
     if ($authInitialized && !$authLoading) {
       if ($isAuthenticated) {
-        goto('/timeline', { replaceState: true });
+        goto('/timeline', { replaceState: true, noScroll: true });
       } else {
-        goto('/login', { replaceState: true });
+        goto('/login', { replaceState: true, noScroll: true });
       }
     }
   });
