@@ -1,4 +1,4 @@
-use tauri::{Manager, Window};
+use tauri::Window;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
@@ -10,8 +10,8 @@ fn greet(name: &str) -> String {
 async fn set_theme(
     window: Window,
     theme: String,
-    title_bar_color: String,
-    text_color: String,
+    _title_bar_color: String,
+    _text_color: String,
 ) -> Result<(), String> {
     #[cfg(target_os = "android")]
     {
@@ -22,8 +22,10 @@ async fn set_theme(
         window.emit("status_bar_theme", serde_json::json!({
             "theme": theme,
             "isDark": is_dark,
-            "statusBarColor": if is_dark { "#000000" } else { "#ffffff" },
-            "lightStatusBar": !is_dark
+            "statusBarColor": if is_dark { "#1f2937" } else { "#ffffff" },
+            "navigationBarColor": if is_dark { "#1f2937" } else { "#ffffff" },
+            "lightStatusBar": !is_dark,
+            "lightNavigationBar": !is_dark
         })).map_err(|e| format!("Failed to emit status bar theme: {}", e))?;
     }
     

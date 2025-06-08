@@ -69,7 +69,8 @@
   }
   
   html {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
   
   body {
@@ -85,6 +86,8 @@
     -webkit-text-size-adjust: 100%;
     margin: 0;
     padding: 0;
+    transition: background-color 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
   
   /* Safe area support for mobile */
@@ -102,5 +105,11 @@
   
   .safe-area-right {
     padding-right: var(--safe-area-inset-right);
+  }
+  
+  /* Global smooth transitions for all theme-related elements */
+  * {
+    transition: border-color 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
 }

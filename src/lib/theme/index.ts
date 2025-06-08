@@ -48,10 +48,21 @@ export const applyTheme = async () => {
   const resolved = getResolvedTheme();
   const root = document.documentElement;
   
+  // Apply transition class before changing themes for smooth transition
+  root.classList.add('theme-transitioning');
+  
+  // Small delay to ensure transition class is applied
+  await new Promise(resolve => setTimeout(resolve, 16));
+  
   root.classList.remove('light', 'dark');
   root.classList.add(resolved);
   
   root.setAttribute('data-theme', resolved);
+  
+  // Remove transition class after transition completes
+  setTimeout(() => {
+    root.classList.remove('theme-transitioning');
+  }, 600);
   
   // Set system bar text color based on theme
   try {
@@ -60,6 +71,15 @@ export const applyTheme = async () => {
       titleBarColor: resolved === 'dark' ? '#1f2937' : '#ffffff',
       textColor: resolved === 'dark' ? '#ffffff' : '#000000'
     });
+    
+    // Android向けの追加処理
+    if (typeof window !== 'undefined' && (window as any).Android) {
+      (window as any).Android.updateTheme(JSON.stringify({
+        isDark: resolved === 'dark',
+        theme: resolved
+      }));
+    }
+    
     console.log('Theme updated successfully:', resolved);
   } catch (error) {
     console.error('Failed to update system bar theme:', error);
