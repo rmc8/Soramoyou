@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { Home, Settings, User, LogOut, Moon, Sun, Monitor, X } from 'lucide-svelte';
-	import { resolvedTheme, themeMode } from '$lib/theme';
-	import { setThemeMode } from '$lib/theme';
+	import { Home, Settings, User, LogOut, X } from 'lucide-svelte';
+	import { resolvedTheme } from '$lib/theme';
 	import { t } from '$lib/i18n';
 	import { currentUser } from '$lib/auth/bluesky';
 	import { isAuthenticated } from '$lib/stores/auth';
@@ -57,17 +56,12 @@
 		return user?.handle ? `@${user.handle}` : '@username';
 	}
 
-	const menuItems = [
+	const menuItems = $derived([
 		{ icon: Home, label: $t('nav.home'), href: '/' },
 		{ icon: User, label: $t('nav.profile'), href: '/profile' },
 		{ icon: Settings, label: $t('nav.settings'), href: '/settings' }
-	];
+	]);
 
-	const themeOptions = [
-		{ value: 'light', icon: Sun, label: $t('theme.light') },
-		{ value: 'dark', icon: Moon, label: $t('theme.dark') },
-		{ value: 'system', icon: Monitor, label: $t('theme.system') }
-	];
 </script>
 
 <style>
@@ -200,27 +194,6 @@
 					{/each}
 				</div>
 			</nav>
-
-			<!-- テーマ切り替え -->
-			<div class="px-6 py-4 mt-auto animate-slide-in-delay-3">
-				<h4 class="text-sm font-semibold mb-4 {isDark ? 'text-white' : 'text-gray-900'}">{$t('settings.theme')}</h4>
-				<div class="rounded-xl p-3 space-y-1 {isDark ? 'bg-gray-800' : 'bg-gray-50'}">
-					{#each themeOptions as option}
-						{@const isSelected = $themeMode === option.value}
-						<button
-							type="button"
-							class="flex items-center space-x-3 w-full px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium relative {isSelected ? (isDark ? 'bg-orange-600 text-white border border-orange-500' : 'bg-blue-600 text-white border border-blue-500') : isDark ? 'hover:bg-gray-700 text-gray-200 border border-transparent' : 'hover:bg-white text-gray-800 border border-transparent'}"
-							onclick={() => setThemeMode(option.value)}
-						>
-							<svelte:component this={option.icon} class="w-4 h-4 {isSelected ? 'animate-pulse' : ''}" />
-							<span>{option.label}</span>
-							{#if isSelected}
-								<div class="absolute right-2 w-2 h-2 rounded-full {isDark ? 'bg-orange-300' : 'bg-blue-300'} animate-pulse"></div>
-							{/if}
-						</button>
-					{/each}
-				</div>
-			</div>
 
 			<!-- ログアウト -->
 			<div class="px-6 pb-6 animate-slide-in-delay-3">
