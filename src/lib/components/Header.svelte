@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { Menu, MessageSquare, User } from 'lucide-svelte';
-	import { createEventDispatcher } from 'svelte';
 	import { currentUser } from '$lib/auth/bluesky';
 	import { isAuthenticated } from '$lib/stores/auth';
 
-	const dispatch = createEventDispatcher();
+	interface Props {
+		onDrawerToggle?: () => void;
+	}
+
+	let { onDrawerToggle }: Props = $props();
 
 	function openDrawer() {
-		dispatch('drawer-toggle');
+		onDrawerToggle?.();
 	}
 
 	// ユーザーアバターのフォールバック関数

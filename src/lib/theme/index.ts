@@ -57,11 +57,12 @@ export const applyTheme = async () => {
   try {
     await invoke('set_theme', { 
       theme: resolved,
-      titleBarColor: resolved === 'dark' ? '#000000' : '#ffffff',
+      titleBarColor: resolved === 'dark' ? '#1f2937' : '#ffffff',
       textColor: resolved === 'dark' ? '#ffffff' : '#000000'
     });
+    console.log('Theme updated successfully:', resolved);
   } catch (error) {
-    console.warn('Failed to update system bar theme:', error);
+    console.error('Failed to update system bar theme:', error);
   }
 };
 

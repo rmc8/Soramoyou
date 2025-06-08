@@ -38,7 +38,7 @@
 </script>
 
 <!-- ヘッダー -->
-<Header ondrawer-toggle={toggleDrawer} />
+<Header onDrawerToggle={toggleDrawer} />
 
 <!-- ドロワー -->
 <Drawer {isDrawerOpen} onclose={closeDrawer} />
