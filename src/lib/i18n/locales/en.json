@@ -32,5 +32,29 @@
     "home": "Home",
     "settings": "Settings",
     "about": "About"
+  },
+  "login": {
+    "title": "Sign in to Bluesky",
+    "subtitle": "Enter your account information",
+    "server": "Server",
+    "serverPlaceholder": "https://your-server.com",
+    "handle": "Handle",
+    "handlePlaceholder": "example.bsky.social or @example",
+    "appPassword": "App Password",
+    "appPasswordPlaceholder": "Enter your app password",
+    "appPasswordHelp": "Use an app password generated from your Bluesky settings",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "createAppPassword": "Create App Password",
+    "info": "App passwords can be created in your Bluesky settings",
+    "error": {
+      "serverRequired": "Server is required",
+      "handleRequired": "Handle is required",
+      "passwordRequired": "App password is required",
+      "invalidServer": "Please enter a valid server URL",
+      "unknown": "Login failed"
+    }
   }
 }

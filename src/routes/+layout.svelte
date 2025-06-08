@@ -6,6 +6,7 @@
 	import { loadSettings } from '$lib/stores/settings';
 	import { setLocale } from '$lib/i18n';
 	import { setThemeMode } from '$lib/theme';
+	import DebugPanel from '$lib/components/DebugPanel.svelte';
 
 	let { children } = $props();
 
@@ -26,3 +27,4 @@
 </script>
 
 {@render children()}
+<DebugPanel />

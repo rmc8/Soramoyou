@@ -1,56 +1,65 @@
 <script lang="ts">
-  import { invoke } from "@tauri-apps/api/core";
+  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
   import { t } from '$lib/i18n';
+  import { 
+    isAuthenticated, 
+    authInitialized, 
+    authLoading, 
+    initAuth 
+  } from '$lib/stores/auth';
   import SettingsPanel from '$lib/components/SettingsPanel.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
 
-  let name = $state("");
-  let greetMsg = $state("");
   let showSettings = $state(false);
 
-  async function greet(event: Event) {
-    event.preventDefault();
-    greetMsg = await invoke("greet", { name });
-  }
+  onMount(async () => {
+    await initAuth();
+  });
+
+  // Redirect based on authentication status
+  $effect(() => {
+    if ($authInitialized && !$authLoading) {
+      if ($isAuthenticated) {
+        goto('/timeline', { replaceState: true });
+      } else {
+        goto('/login', { replaceState: true });
+      }
+    }
+  });
 </script>
 
-<main class="container">
-  <div class="header">
-    <h1>{$t('app.title')}</h1>
-    <Button 
-      variant="outline" 
-      size="sm"
-      on:click={() => showSettings = !showSettings}
-    >
-      {$t('settings.title')}
-    </Button>
-  </div>
+<svelte:head>
+  <title>{$t('app.title')}</title>
+</svelte:head>
 
-  {#if showSettings}
-    <div class="settings-container">
-      <SettingsPanel />
+<main class="container">
+  {#if $authLoading}
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>{$t('common.loading')}</p>
     </div>
   {:else}
-    <div class="main-content">
-      <div class="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" class="logo vite" alt="Vite Logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" class="logo tauri" alt="Tauri Logo" />
-        </a>
-        <a href="https://svelte.dev" target="_blank">
-          <img src="/svelte.svg" class="logo svelte-kit" alt="SvelteKit Logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and SvelteKit logos to learn more.</p>
-
-      <form class="row" onsubmit={greet}>
-        <input id="greet-input" placeholder="Enter a name..." bind:value={name} />
-        <button type="submit">{$t('common.ok')}</button>
-      </form>
-      <p>{greetMsg}</p>
+    <div class="header">
+      <h1>{$t('app.title')}</h1>
+      <Button 
+        variant="outline" 
+        size="sm"
+        on:click={() => showSettings = !showSettings}
+      >
+        {$t('settings.title')}
+      </Button>
     </div>
+
+    {#if showSettings}
+      <div class="settings-container">
+        <SettingsPanel />
+      </div>
+    {:else}
+      <div class="main-content">
+        <p>認証状態を確認中...</p>
+      </div>
+    {/if}
   {/if}
 </main>
 
@@ -170,5 +179,30 @@ button:not(.ui-button):focus {
 p {
   color: hsl(var(--muted-foreground));
   margin: 1rem 0;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid hsl(var(--border));
+  border-top: 2px solid hsl(var(--primary));
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

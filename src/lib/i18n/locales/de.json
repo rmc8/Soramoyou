@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Soramoyou",
-    "title": "Himmelsstimmung"
+    "title": "Soramoyou"
   },
   "common": {
     "ok": "OK",
@@ -32,5 +32,29 @@
     "home": "Startseite",
     "settings": "Einstellungen",
     "about": "Über"
+  },
+  "login": {
+    "title": "Bei Bluesky anmelden",
+    "subtitle": "Geben Sie Ihre Kontoinformationen ein",
+    "server": "Server",
+    "serverPlaceholder": "https://your-server.com",
+    "handle": "Handle",
+    "handlePlaceholder": "example.bsky.social oder @example",
+    "appPassword": "App-Passwort",
+    "appPasswordPlaceholder": "Geben Sie Ihr App-Passwort ein",
+    "appPasswordHelp": "Verwenden Sie ein App-Passwort aus Ihren Bluesky-Einstellungen",
+    "signIn": "Anmelden",
+    "signingIn": "Anmeldung läuft...",
+    "showPassword": "Passwort anzeigen",
+    "hidePassword": "Passwort verbergen",
+    "createAppPassword": "App-Passwort erstellen",
+    "info": "App-Passwörter können in Ihren Bluesky-Einstellungen erstellt werden",
+    "error": {
+      "serverRequired": "Server ist erforderlich",
+      "handleRequired": "Handle ist erforderlich",
+      "passwordRequired": "App-Passwort ist erforderlich",
+      "invalidServer": "Bitte geben Sie eine gültige Server-URL ein",
+      "unknown": "Anmeldung fehlgeschlagen"
+    }
   }
 }

@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Soramoyou",
-    "title": "そらもよう"
+    "title": "Soramoyou"
   },
   "common": {
     "ok": "OK",
@@ -32,5 +32,29 @@
     "home": "ホーム",
     "settings": "設定",
     "about": "について"
+  },
+  "login": {
+    "title": "Blueskyにログイン",
+    "subtitle": "アカウント情報を入力してください",
+    "server": "サーバー",
+    "serverPlaceholder": "https://your-server.com",
+    "handle": "ハンドル",
+    "handlePlaceholder": "example.bsky.social または @example",
+    "appPassword": "アプリパスワード",
+    "appPasswordPlaceholder": "アプリパスワードを入力",
+    "appPasswordHelp": "Blueskyの設定画面で生成したアプリパスワードを使用してください",
+    "signIn": "ログイン",
+    "signingIn": "ログイン中...",
+    "showPassword": "パスワードを表示",
+    "hidePassword": "パスワードを非表示",
+    "createAppPassword": "アプリパスワードを作成",
+    "info": "アプリパスワードはBlueskyの設定から作成できます",
+    "error": {
+      "serverRequired": "サーバーを入力してください",
+      "handleRequired": "ハンドルを入力してください",
+      "passwordRequired": "アプリパスワードを入力してください",
+      "invalidServer": "有効なサーバーURLを入力してください",
+      "unknown": "ログインに失敗しました"
+    }
   }
 }
