@@ -61,26 +61,16 @@ export const setLocale = async (newLocale: Locale) => {
   const newTranslations = await loadTranslations(newLocale);
   translations.set(newTranslations);
   locale.set(newLocale);
-  
-  if (browser) {
-    localStorage.setItem('locale', newLocale);
-  }
 };
 
-export const initI18n = async () => {
-  let initialLocale: Locale = 'ja';
-  
-  if (browser) {
-    const savedLocale = localStorage.getItem('locale') as Locale;
-    if (savedLocale && Object.keys(availableLocales).includes(savedLocale)) {
-      initialLocale = savedLocale;
-    } else {
-      const browserLang = navigator.language.slice(0, 2) as Locale;
-      if (Object.keys(availableLocales).includes(browserLang)) {
-        initialLocale = browserLang;
-      }
-    }
+// この関数は settings.ts に移動済み
+export const initI18n = async (initialLocale?: Locale) => {
+  // 引数で指定された言語を使用（設定から読み込まれた言語）
+  if (initialLocale) {
+    await setLocale(initialLocale);
+  } else {
+    // フォールバック（通常は発生しない）
+    console.warn('initI18n called without initialLocale, using English as fallback');
+    await setLocale('en');
   }
-  
-  await setLocale(initialLocale);
 };

@@ -1,4 +1,4 @@
-import { writable, derived } from 'svelte/store';
+import { writable, derived, get } from 'svelte/store';
 import { browser } from '$app/environment';
 import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
@@ -34,11 +34,10 @@ const updateSystemPreference = () => {
   systemPrefersDark.set(getSystemPreference());
 };
 
-export const setThemeMode = (mode: ThemeMode) => {
+export const setThemeMode = async (mode: ThemeMode) => {
   themeMode.set(mode);
   if (browser) {
-    localStorage.setItem('themeMode', mode);
-    applyTheme();
+    await applyTheme();
   }
 };
 
@@ -87,20 +86,16 @@ export const applyTheme = async () => {
 };
 
 const getResolvedTheme = (): ResolvedTheme => {
-  const mode = getThemeMode();
+  const mode = get(themeMode);
   if (mode === 'system') {
     return getSystemPreference() ? 'dark' : 'light';
   }
   return mode as ResolvedTheme;
 };
 
-const getThemeMode = (): ThemeMode => {
-  if (!browser) return 'system';
-  const saved = localStorage.getItem('themeMode') as ThemeMode;
-  return saved && ['light', 'dark', 'system'].includes(saved) ? saved : 'system';
-};
+// この関数は非推奨 - loadSettingsを使用
 
-export const initTheme = async () => {
+export const initTheme = async (initialThemeMode?: ThemeMode) => {
   if (!browser) return;
   
   updateSystemPreference();
@@ -108,8 +103,14 @@ export const initTheme = async () => {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   mediaQuery.addEventListener('change', updateSystemPreference);
   
-  const savedMode = getThemeMode();
-  themeMode.set(savedMode);
+  // 引数で指定されたテーマモードを使用（設定から読み込まれたテーマモード）
+  if (initialThemeMode) {
+    themeMode.set(initialThemeMode);
+  } else {
+    // フォールバック（通常は発生しない）
+    console.warn('initTheme called without initialThemeMode, using system as fallback');
+    themeMode.set('system');
+  }
   
   await applyTheme();
   

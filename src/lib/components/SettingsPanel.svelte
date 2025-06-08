@@ -34,8 +34,11 @@
 
   const handleThemeChange = async (newTheme: ThemeMode) => {
     try {
-      setThemeMode(newTheme);
+      console.log('SettingsPanel: Changing theme to:', newTheme);
+      await setThemeMode(newTheme);
+      console.log('SettingsPanel: setThemeMode completed');
       await updateThemeMode(newTheme);
+      console.log('SettingsPanel: updateThemeMode completed');
     } catch (error) {
       console.error('Failed to update theme:', error);
     }

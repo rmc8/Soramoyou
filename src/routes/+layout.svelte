@@ -23,27 +23,33 @@
 
 	onMount(async () => {
 		try {
-			// 並列で初期化処理を実行して起動時間を短縮
-			const [settings] = await Promise.all([
-				loadSettings(),
-				initI18n() // i18nを先行して初期化
+			console.log('App startup: Loading settings...');
+			// 設定を読み込み（初回起動時はシステム設定を検出・保存、2回目以降は保存された設定を使用）
+			const settings = await loadSettings();
+			
+			console.log('App startup: Loaded settings:', settings);
+			
+			// 読み込まれた設定に基づいて初期化処理を実行
+			await Promise.all([
+				initI18n(settings.locale),
+				initTheme(settings.themeMode)
 			]);
 			
-			// 設定値を適用
-			await Promise.all([
-				setLocale(settings.locale),
-				initTheme().then(() => setThemeMode(settings.themeMode))
-			]);
+			console.log('App startup: Initialized successfully with locale:', settings.locale, 'theme:', settings.themeMode);
 		} catch (error) {
-			console.error('Failed to initialize app:', error);
-			// フォールバック処理も並列化
+			console.error('App startup: Failed to initialize app:', error);
+			// エラー時のフォールバック処理
 			await Promise.all([
-				initI18n(),
-				initTheme()
+				initI18n('en'), // 英語にフォールバック
+				initTheme('system') // システムテーマにフォールバック
 			]);
 		}
 	});
 </script>
+
+<svelte:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+</svelte:head>
 
 <!-- ヘッダー -->
 <Header onDrawerToggle={toggleDrawer} />
@@ -52,14 +58,17 @@
 <Drawer {isDrawerOpen} onclose={closeDrawer} />
 
 <!-- メインコンテンツ -->
-<div class="safe-area-top min-h-screen">
-	<!-- ヘッダーの高さ分のスペース -->
-	<div class="h-16"></div>
+<div class="min-h-screen flex flex-col">
+	<!-- システムバー + ヘッダー分のスペース -->
+	<div class="flex-shrink-0" style="height: calc(var(--safe-area-inset-top, 0px) + 4rem);"></div>
 	
 	<!-- ページコンテンツ -->
-	<main class="relative">
+	<main class="flex-1 relative">
 		{@render children()}
 	</main>
+	
+	<!-- システムバー分のスペース（下部） -->
+	<div class="safe-area-bottom"></div>
 </div>
 
 <DebugPanel />

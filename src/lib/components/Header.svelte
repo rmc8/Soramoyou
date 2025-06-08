@@ -27,7 +27,7 @@
 	}
 </script>
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b safe-area-top">
+<header class="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b" style="top: var(--safe-area-inset-top, 0px);">
 	<div class="flex items-center justify-between px-4 py-3">
 		<!-- 左側: ユーザーアバター -->
 		<button
