@@ -1,0 +1,35 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    "opener:default",
+    "store:default",
+    "sql:default",
+    "sql:allow-execute",
+    "sql:allow-select",
+    "sql:allow-load",
+    "sql:allow-close",
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://bsky.social/*"
+        },
+        {
+          "url": "https://staging.bsky.dev/*"
+        },
+        {
+          "url": "https://*.bsky.social/*"
+        },
+        {
+          "url": "https://*.staging.bsky.dev/*"
+        }
+      ]
+    }
+  ]
+}

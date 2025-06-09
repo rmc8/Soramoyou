@@ -1,0 +1,102 @@
+{
+  "app": {
+    "name": "Soramoyou",
+    "title": "Soramoyou"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "loading": "Laden...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolgreich"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "theme": "Design",
+    "appearance": "Erscheinungsbild"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System folgen"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "settings": "Einstellungen",
+    "about": "Über"
+  },
+  "user": {
+    "defaultName": "Benutzer"
+  },
+  "nav": {
+    "home": "Startseite",
+    "profile": "Profil",
+    "settings": "Einstellungen",
+    "feed": "Feed",
+    "search": "Suchen",
+    "notifications": "Benachrichtigungen"
+  },
+  "drawer": {
+    "menu": "Menü"
+  },
+  "auth": {
+    "notLoggedIn": "Nicht angemeldet",
+    "pleaseLogin": "Bitte melden Sie sich an",
+    "logout": "Abmelden",
+    "sessionExpired": "Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
+    "error": {
+      "loginFailed": "Anmeldung fehlgeschlagen",
+      "invalidCredentials": "Handle oder App-Passwort ist falsch",
+      "badRequest": "Problem mit der Anfrage. Bitte überprüfen Sie Ihre Eingabe",
+      "tooManyRequests": "Zu viele Anfragen. Bitte warten Sie und versuchen Sie es erneut",
+      "networkError": "Netzwerkfehler aufgetreten. Bitte überprüfen Sie Ihre Verbindung",
+      "generic": "Fehler: {message}",
+      "sessionRestoreFailed": "Sitzung konnte nicht wiederhergestellt werden",
+      "sessionRefreshFailed": "Sitzung konnte nicht aktualisiert werden. Bitte melden Sie sich erneut an."
+    }
+  },
+  "debug": {
+    "title": "Debug-Panel",
+    "refresh": "Aktualisieren",
+    "clear": "Löschen",
+    "latestError": "Letzter Fehler:",
+    "logHistory": "Log-Verlauf:",
+    "noLogs": "Keine Logs verfügbar"
+  },
+  "timeline": {
+    "comingSoon": "Timeline-Feature kommt bald.",
+    "sessionInfo": "Sitzungsinfo"
+  },
+  "login": {
+    "title": "Bei Bluesky anmelden",
+    "subtitle": "Geben Sie Ihre Kontoinformationen ein",
+    "server": "Server",
+    "serverPlaceholder": "https://your-server.com",
+    "handle": "Handle",
+    "handlePlaceholder": "example.bsky.social oder @example",
+    "appPassword": "App-Passwort",
+    "appPasswordPlaceholder": "Geben Sie Ihr App-Passwort ein",
+    "appPasswordHelp": "Verwenden Sie ein App-Passwort aus Ihren Bluesky-Einstellungen",
+    "signIn": "Anmelden",
+    "signingIn": "Anmeldung läuft...",
+    "showPassword": "Passwort anzeigen",
+    "hidePassword": "Passwort verbergen",
+    "createAppPassword": "App-Passwort erstellen",
+    "info": "App-Passwörter können in Ihren Bluesky-Einstellungen erstellt werden",
+    "error": {
+      "serverRequired": "Server ist erforderlich",
+      "handleRequired": "Handle ist erforderlich",
+      "passwordRequired": "App-Passwort ist erforderlich",
+      "invalidServer": "Bitte geben Sie eine gültige Server-URL ein",
+      "unknown": "Anmeldung fehlgeschlagen"
+    }
+  }
+}

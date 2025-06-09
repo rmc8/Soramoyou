@@ -1,0 +1,102 @@
+{
+  "app": {
+    "name": "Soramoyou",
+    "title": "Soramoyou"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "close": "Fechar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "success": "Sucesso"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "theme": "Tema",
+    "appearance": "Aparência"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Seguir sistema"
+  },
+  "navigation": {
+    "home": "Início",
+    "settings": "Configurações",
+    "about": "Sobre"
+  },
+  "user": {
+    "defaultName": "Usuário"
+  },
+  "nav": {
+    "home": "Início",
+    "profile": "Perfil",
+    "settings": "Configurações",
+    "feed": "Feed",
+    "search": "Buscar",
+    "notifications": "Notificações"
+  },
+  "drawer": {
+    "menu": "Menu"
+  },
+  "auth": {
+    "notLoggedIn": "Não conectado",
+    "pleaseLogin": "Por favor, faça login",
+    "logout": "Sair",
+    "sessionExpired": "Sessão expirou. Por favor, faça login novamente.",
+    "error": {
+      "loginFailed": "Falha no login",
+      "invalidCredentials": "Identificador ou senha do app está incorreto",
+      "badRequest": "Há um problema com a solicitação. Verifique sua entrada",
+      "tooManyRequests": "Muitas solicitações. Aguarde e tente novamente",
+      "networkError": "Erro de rede ocorreu. Verifique sua conexão",
+      "generic": "Erro: {message}",
+      "sessionRestoreFailed": "Falha ao restaurar sessão",
+      "sessionRefreshFailed": "Falha ao atualizar sessão. Por favor, faça login novamente."
+    }
+  },
+  "debug": {
+    "title": "Painel de Debug",
+    "refresh": "Atualizar",
+    "clear": "Limpar",
+    "latestError": "Último Erro:",
+    "logHistory": "Histórico de Logs:",
+    "noLogs": "Nenhum log disponível"
+  },
+  "timeline": {
+    "comingSoon": "Funcionalidade de timeline em breve.",
+    "sessionInfo": "Informações da Sessão"
+  },
+  "login": {
+    "title": "Entrar no Bluesky",
+    "subtitle": "Digite suas informações da conta",
+    "server": "Servidor",
+    "serverPlaceholder": "https://your-server.com",
+    "handle": "Identificador",
+    "handlePlaceholder": "example.bsky.social ou @example",
+    "appPassword": "Senha do App",
+    "appPasswordPlaceholder": "Digite sua senha do app",
+    "appPasswordHelp": "Use uma senha de app gerada nas configurações do Bluesky",
+    "signIn": "Entrar",
+    "signingIn": "Entrando...",
+    "showPassword": "Mostrar senha",
+    "hidePassword": "Ocultar senha",
+    "createAppPassword": "Criar Senha do App",
+    "info": "Senhas de app podem ser criadas nas configurações do Bluesky",
+    "error": {
+      "serverRequired": "Servidor é obrigatório",
+      "handleRequired": "Identificador é obrigatório",
+      "passwordRequired": "Senha do app é obrigatória",
+      "invalidServer": "Digite um URL de servidor válido",
+      "unknown": "Falha no login"
+    }
+  }
+}

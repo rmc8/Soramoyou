@@ -1,0 +1,102 @@
+{
+  "app": {
+    "name": "Soramoyou",
+    "title": "Soramoyou"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "close": "閉じる",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "success": "成功しました"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "言語",
+    "theme": "テーマ",
+    "appearance": "外観"
+  },
+  "theme": {
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム設定に従う"
+  },
+  "navigation": {
+    "home": "ホーム",
+    "settings": "設定",
+    "about": "について"
+  },
+  "user": {
+    "defaultName": "ユーザー"
+  },
+  "nav": {
+    "home": "ホーム",
+    "profile": "プロフィール",
+    "settings": "設定",
+    "feed": "フィード",
+    "search": "検索",
+    "notifications": "通知"
+  },
+  "drawer": {
+    "menu": "メニュー"
+  },
+  "auth": {
+    "notLoggedIn": "未ログイン",
+    "pleaseLogin": "ログインしてください",
+    "logout": "ログアウト",
+    "sessionExpired": "セッションの有効期限が切れました。再度ログインしてください。",
+    "error": {
+      "loginFailed": "ログインに失敗しました",
+      "invalidCredentials": "ハンドルまたはアプリパスワードが正しくありません",
+      "badRequest": "リクエストに問題があります。入力内容を確認してください",
+      "tooManyRequests": "リクエストが多すぎます。しばらく待ってから再試行してください",
+      "networkError": "ネットワークエラーが発生しました。接続を確認してください",
+      "generic": "エラー: {message}",
+      "sessionRestoreFailed": "セッションの復元に失敗しました",
+      "sessionRefreshFailed": "セッションの更新に失敗しました。再ログインしてください。"
+    }
+  },
+  "debug": {
+    "title": "デバッグパネル",
+    "refresh": "更新",
+    "clear": "クリア",
+    "latestError": "最新エラー:",
+    "logHistory": "ログ履歴:",
+    "noLogs": "ログがありません"
+  },
+  "timeline": {
+    "comingSoon": "タイムライン機能は実装予定です。",
+    "sessionInfo": "セッション情報"
+  },
+  "login": {
+    "title": "Blueskyにログイン",
+    "subtitle": "アカウント情報を入力してください",
+    "server": "サーバー",
+    "serverPlaceholder": "https://your-server.com",
+    "handle": "ハンドル",
+    "handlePlaceholder": "example.bsky.social または @example",
+    "appPassword": "アプリパスワード",
+    "appPasswordPlaceholder": "アプリパスワードを入力",
+    "appPasswordHelp": "Blueskyの設定画面で生成したアプリパスワードを使用してください",
+    "signIn": "ログイン",
+    "signingIn": "ログイン中...",
+    "showPassword": "パスワードを表示",
+    "hidePassword": "パスワードを非表示",
+    "createAppPassword": "アプリパスワードを作成",
+    "info": "アプリパスワードはBlueskyの設定から作成できます",
+    "error": {
+      "serverRequired": "サーバーを入力してください",
+      "handleRequired": "ハンドルを入力してください",
+      "passwordRequired": "アプリパスワードを入力してください",
+      "invalidServer": "有効なサーバーURLを入力してください",
+      "unknown": "ログインに失敗しました"
+    }
+  }
+}
