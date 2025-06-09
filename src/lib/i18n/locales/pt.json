@@ -39,7 +39,10 @@
   "nav": {
     "home": "Início",
     "profile": "Perfil",
-    "settings": "Configurações"
+    "settings": "Configurações",
+    "feed": "Feed",
+    "search": "Buscar",
+    "notifications": "Notificações"
   },
   "drawer": {
     "menu": "Menu"

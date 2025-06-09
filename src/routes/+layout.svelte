@@ -1,14 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import '../app.css';
 	import { initI18n } from '$lib/i18n';
 	import { initTheme } from '$lib/theme';
 	import { loadSettings } from '$lib/stores/settings';
 	import { setLocale } from '$lib/i18n';
 	import { setThemeMode } from '$lib/theme';
+	import { isAuthenticated } from '$lib/stores/auth';
 	import DebugPanel from '$lib/components/DebugPanel.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Drawer from '$lib/components/Drawer.svelte';
+	import BottomNavigation from '$lib/components/BottomNavigation.svelte';
 
 	let { children } = $props();
 	let isDrawerOpen = $state(false);
@@ -67,8 +70,13 @@
 		{@render children()}
 	</main>
 	
-	<!-- システムバー分のスペース（下部） -->
-	<div class="safe-area-bottom"></div>
+	<!-- ボトムナビゲーション分のスペース -->
+	<div class="flex-shrink-0" style="height: calc(var(--safe-area-inset-bottom, 0px) + {$isAuthenticated && !['/login', '/settings'].includes($page.url.pathname) ? '4rem' : '0px'});"></div>
 </div>
+
+<!-- ボトムナビゲーション（認証済みかつメインページでのみ表示） -->
+{#if $isAuthenticated && !['/login', '/settings'].includes($page.url.pathname)}
+	<BottomNavigation />
+{/if}
 
 <DebugPanel />
