@@ -59,7 +59,7 @@
 
 <!-- メインコンテンツ -->
 <div class="min-h-screen flex flex-col">
-	<!-- システムバー + ヘッダー分のスペース -->
+	<!-- ヘッダー分のスペース（システムバー + ヘッダーコンテンツ） -->
 	<div class="flex-shrink-0" style="height: calc(var(--safe-area-inset-top, 0px) + 4rem);"></div>
 	
 	<!-- ページコンテンツ -->

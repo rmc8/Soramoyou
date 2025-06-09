@@ -28,12 +28,12 @@
 	}
 </script>
 
-<header class="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b" style="top: var(--safe-area-inset-top, 0px);">
+<header class="fixed left-0 right-0 top-0 z-50 bg-background/95 backdrop-blur-sm border-b" style="padding-top: var(--safe-area-inset-top, 0px);">
 	<div class="flex items-center justify-between px-4 py-3">
 		<!-- 左側: ユーザーアバター -->
 		<button
 			type="button"
-			class="flex items-center justify-center w-8 h-8 rounded-full overflow-hidden ring-1 ring-border/20 hover:ring-border/40 transition-all duration-200 active:scale-95"
+			class="flex items-center justify-center w-8 h-8 rounded-full overflow-hidden ring-1 ring-input hover:ring-ring transition-all duration-200 active:scale-95"
 			onclick={openDrawer}
 		>
 			{#if $isAuthenticated && $currentUser}

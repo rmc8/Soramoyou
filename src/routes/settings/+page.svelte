@@ -32,7 +32,7 @@
 
 <div class="min-h-screen bg-background">
 	<!-- ヘッダー -->
-	<header class="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b" style="top: var(--safe-area-inset-top, 0px);">
+	<header class="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b" style="padding-top: var(--safe-area-inset-top, 0px);">
 		<div class="flex items-center px-4 py-3">
 			<button
 				type="button"
