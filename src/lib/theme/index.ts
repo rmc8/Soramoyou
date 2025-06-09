@@ -67,7 +67,7 @@ export const applyTheme = async () => {
   try {
     await invoke('set_theme', { 
       theme: resolved,
-      titleBarColor: resolved === 'dark' ? '#1f2937' : '#ffffff',
+      titleBarColor: resolved === 'dark' ? '#000000' : '#ffffff', // 完全不透明の単色
       textColor: resolved === 'dark' ? '#ffffff' : '#000000'
     });
     
@@ -75,7 +75,9 @@ export const applyTheme = async () => {
     if (typeof window !== 'undefined' && (window as any).Android) {
       (window as any).Android.updateTheme(JSON.stringify({
         isDark: resolved === 'dark',
-        theme: resolved
+        theme: resolved,
+        statusBarColor: resolved === 'dark' ? '#000000' : '#ffffff',
+        navigationBarColor: resolved === 'dark' ? '#000000' : '#ffffff'
       }));
     }
     

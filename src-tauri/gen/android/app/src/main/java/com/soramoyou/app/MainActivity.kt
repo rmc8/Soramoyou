@@ -13,19 +13,20 @@ class MainActivity : TauriActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // Enable edge-to-edge display
+        // Enable edge-to-edge display without making system bars transparent
         WindowCompat.setDecorFitsSystemWindows(window, false)
         
-        // Set layout flags for immersive experience
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
+        // Ensure system bars are not translucent from the start
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         
         // システムの初期テーマを設定
         val isSystemDark = resources.configuration.uiMode and 
             android.content.res.Configuration.UI_MODE_NIGHT_MASK == 
             android.content.res.Configuration.UI_MODE_NIGHT_YES
+        
+        android.util.Log.d("MainActivity", "Initial theme setup: isDark=$isSystemDark")
         updateStatusBarAppearance(isSystemDark)
     }
     
@@ -57,18 +58,35 @@ class MainActivity : TauriActivity() {
             windowInsetsController.isAppearanceLightStatusBars = !isDark
             windowInsetsController.isAppearanceLightNavigationBars = !isDark
             
-            // Update status bar and navigation bar colors
-            window.statusBarColor = if (isDark) {
-                android.graphics.Color.parseColor("#1f2937")
+            // Ensure system bars are not translucent
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+            
+            // Force system bar drawing
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            
+            // Update status bar and navigation bar colors with solid background
+            // コンテンツが透けて見えないよう完全不透明の単色に設定
+            val statusBarColor = if (isDark) {
+                // ダークテーマ: 完全な黒
+                android.graphics.Color.BLACK
             } else {
-                android.graphics.Color.parseColor("#ffffff")
+                // ライトテーマ: 完全な白
+                android.graphics.Color.WHITE
             }
             
-            window.navigationBarColor = if (isDark) {
-                android.graphics.Color.parseColor("#1f2937")  
+            val navigationBarColor = if (isDark) {
+                // ナビゲーションバーも同様に完全な黒
+                android.graphics.Color.BLACK
             } else {
-                android.graphics.Color.parseColor("#ffffff")
+                // ナビゲーションバーも同様に完全な白
+                android.graphics.Color.WHITE
             }
+            
+            window.statusBarColor = statusBarColor
+            window.navigationBarColor = navigationBarColor
+            
+            android.util.Log.d("MainActivity", "System bar colors updated - Status: ${Integer.toHexString(statusBarColor)}, Navigation: ${Integer.toHexString(navigationBarColor)}, LightBars: ${!isDark}")
         }
     }
     
@@ -131,8 +149,15 @@ class MainActivity : TauriActivity() {
             try {
                 val data = org.json.JSONObject(jsonData)
                 val isDark = data.getBoolean("isDark")
+                
+                // ログ出力でデバッグ
+                android.util.Log.d("MainActivity", "Theme update requested: isDark=$isDark")
+                
                 updateStatusBarAppearance(isDark)
+                
+                android.util.Log.d("MainActivity", "Theme update completed")
             } catch (e: Exception) {
+                android.util.Log.e("MainActivity", "Failed to update theme", e)
                 e.printStackTrace()
             }
         }
